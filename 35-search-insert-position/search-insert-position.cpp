@@ -9,13 +9,8 @@ class Solution
 
             while (s <= e)
             {
-                int mid = (s+e)/2;
-
-
-                cout<<mid<<endl;
+                int mid = e - ((e-s)/2);
                 ans = mid;
-
-
                 if (target > nums[mid])
                 {   
                     s = mid + 1;
@@ -30,20 +25,10 @@ class Solution
                 }
                 else
                 {
-                    // cout<<ans<<endl;
-                    cout<<s<<" "<<e<<" "<<ans<<endl;
                     return ans;
                 }
             }
-            cout<<s<<" "<<e<<" "<<ans<<endl;
-            // return ans+1;
-            
-            // if(nums[ans]<target){
-            //     return ans+1;
-            // }
-            // else{
-            //     return ans;
-            // }
+
             if(ans<0){
                 return 0;
             }
@@ -58,7 +43,6 @@ class Solution
                     return ans +1;
                 }
             }
-            // return 0;
 
             // return lower_bound(nums.begin(),nums.end(),target)-nums.begin();
         }
