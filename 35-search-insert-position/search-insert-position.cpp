@@ -10,7 +10,7 @@ class Solution
             while (s <= e)
             {
                 int mid = e - ((e-s)/2);
-                ans = mid;
+                // ans = mid;
                 if (target > nums[mid])
                 {   
                     s = mid + 1;
@@ -25,7 +25,7 @@ class Solution
                 }
                 else
                 {
-                    return ans;
+                    return mid;
                 }
             }
 
