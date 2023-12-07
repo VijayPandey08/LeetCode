@@ -3,9 +3,9 @@ class Solution
     public:
         vector<int> twoSum(vector<int> &nums, int target)
         {
-            vector<int> temp=nums;
+            vector<int> temp;
             vector<int> ans;
-        
+            temp = nums;
 
             sort(nums.begin(), nums.end());
 
@@ -17,40 +17,40 @@ class Solution
 
             while (s < e)
             {
+                int mid = nums[s] + nums[e];
+                if (mid == target)
+                {
+                    check1 = nums[s];
+                    check2 = nums[e];
+                    break;
                 
-               
-                if (nums[s]+nums[e] > target)
+                }
+                else if (mid > target)
                 {
                     e--;
                 }
-                else if (nums[s]+nums[e] < target)
+                else if (mid < target)
                 {
                     s++;
                 }
-                else{
-                    check1=nums[s];
-                    check2=nums[e];
-                    break;
-                }
-               
             }
 
-             for (int i = 0; i < temp.size(); i++)
+            for (int i = 0; i < temp.size(); i++)
+            {
+                if (temp[i] == check1)
                 {
-                    if (temp[i] == check1)
-                    {
-                        ans.push_back(i);
-                        break;
-                    }
+                    ans.push_back(i);
+                    break;
                 }
-                for (int i = temp.size() - 1; i >= 0; i--)
+            }
+            for (int i = temp.size() - 1; i >= 0; i--)
+            {
+                if (temp[i] == check2)
                 {
-                    if (temp[i] == check2)
-                    {
-                        ans.push_back(i);
-                        break;
-                    }
+                    ans.push_back(i);
+                    break;
                 }
+            }
 
             return ans;
         }
