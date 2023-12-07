@@ -6,15 +6,11 @@ class Solution
             int count = 0;
             while (n > 0)
             {
-                if ((n & 1) % 2 != 0)
+                if (n & 1)
                 {
                     count++;
+                }
                     n =n>>1;
-                }
-                else
-                {
-                    n= n>>1;
-                }
             }
             return count;
         }
