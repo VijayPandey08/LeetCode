@@ -6,7 +6,7 @@ public:
         for(int i=0; i<nums.size(); i++){
             if(nums[i]==1){
                 count++;
-                ans=max(ans,count); // pucho ki yeh neeche else mein q nhi daal skte;
+                ans=max(ans,count); // yeh ans ko hum else mein nhi update kra skte q ki agar last element one hoga, toh vo else statemnet m ghusega hi nhi.. aur hamara cut jaaega
             }
             else{
             count=0;
