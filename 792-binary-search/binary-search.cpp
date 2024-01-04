@@ -1,26 +1,27 @@
-class Solution {
-public:
-    int search(vector<int>& nums, int target) {
-        int ans=-1;
-        sort(nums.begin(),nums.end());
-        int s=0;
-        int e=nums.size()-1;
-        int mid = s+((e-s)/2);
-        while(s<=e){
-            if(nums[mid]==target){
-                ans = mid;
-                break;
-            }
-            else if(nums[mid]>target){
-                e--;
-                mid = s+((e-s)/2);
+class Solution
+{
+    public:
+        int search(vector<int> &nums, int target)
+        {
+            int s = 0;
+            int e = nums.size() - 1;
+            while (s <= e)
+            {
+            int mid = e - (e - s) / 2;
+                if (target == nums[mid])
+                {
+                    return mid;
+                }
+                else if (target > nums[mid])
+                {
+                    s = mid + 1;
+                }
+                else
+                {
+                    e = mid - 1;
+                }
                 
             }
-            else if(nums[mid]<target){
-                s++;
-                mid = s+((e-s)/2);
-            }
+            return -1;
         }
-        return ans;
-    }
 };
