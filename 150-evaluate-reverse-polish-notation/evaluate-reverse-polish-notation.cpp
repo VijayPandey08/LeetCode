@@ -6,16 +6,16 @@ class Solution
     public:
         bool isInteger(const string &s)
         {
-            if (s.empty() || ((!isdigit(s[0])) && (s[0] != '-') && (s[0] != '+')))
-            {
-                return false;
+            if(s.length()>1){
+                return true;
             }
-
-            char *p;
-            strtol(s.c_str(), &p, 10);
-
-            return (*p == 0);
+            if(s.length()==1 && s>="0" && s<="9"){
+                return true;
+                 
+            }
+            return false;
         }
+            
 
     int evalRPN(vector<string> &token)
     {
