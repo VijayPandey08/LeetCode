@@ -5,11 +5,11 @@ class Solution
         {
             stack<int> s;
 
-            int n = pushed.size();
+        int n = pushed.size();
         int m = popped.size();
         int j = 0;
 
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; i++) {
             s.push(pushed[i]);
 
             while (!s.empty() && j < m && s.top() == popped[j]) {
