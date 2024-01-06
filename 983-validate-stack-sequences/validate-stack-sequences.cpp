@@ -14,10 +14,10 @@ class Solution
 
             while (!s.empty() && j < m && s.top() == popped[j]) {
                 s.pop();
-                ++j;
+                j++;
             }
         }
 
-        return j == m && s.empty();
+        return  s.empty();
         }
 };
