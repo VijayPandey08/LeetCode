@@ -20,13 +20,34 @@ public:
         return count;
     } 
     ListNode* middleNode(ListNode* head) {
-        int n=getlen(head);
-        int position = n/2 +1;
-            ListNode* temp1=head;
-        while(position!=1){
-            position--;
-            temp1=temp1->next;
+  
+    // acchi approach -> slow and fast pointer -> single pass
+    // tortoise algorithm
+    ListNode *fast=head;
+    ListNode *slow=head;
+
+    while(fast!=NULL){
+        fast=fast->next;
+        if(fast!=NULL){
+            fast=fast->next;
+            slow=slow->next;
         }
-        return temp1;
+    }  
+    return slow;
+  
+  
+  
+  
+  
+  
+        // normal iterative approach-> length nikalo -> n/2 +1 vali position ko print kr do 
+        // int n=getlen(head);
+        // int position = n/2 +1;
+        //     ListNode* temp1=head;
+        // while(position!=1){
+        //     position--;
+        //     temp1=temp1->next;
+        // }
+        // return temp1;
     }
 };
