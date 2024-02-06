@@ -21,6 +21,7 @@ class Solution
             }
                 return;
         }
+        int temp = grid[x][y];
          grid[x][y] = -1;
         
         for (auto i: directions)
@@ -30,7 +31,7 @@ class Solution
             solve(grid, count + 1, new_x, new_y);
         }
        	
-           grid[x][y] = 0;
+           grid[x][y] = temp;
     }
     int uniquePathsIII(vector<vector < int>> &grid)
     {
