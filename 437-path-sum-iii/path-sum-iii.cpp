@@ -13,11 +13,12 @@ class Solution {
 public:
     map<long long,long long> m;
     int ans;
+
     void solve(TreeNode* root, int targetSum,long long sum){
         if(root==NULL) return;
         sum+=root->val;
         if(m.find(sum-targetSum)!=m.end()){
-            if(m[sum-targetSum]>0) ans+=m[sum-targetSum];
+            ans+=m[sum-targetSum];
         }
         m[sum]++;
         solve(root->left,targetSum,sum);
