@@ -19,7 +19,7 @@ public:
 
     ListNode* reverseList(ListNode* head) {
         if(head==NULL) return head;
-        ListNode* temp = new ListNode(NULL);
+        ListNode* temp = NULL;
         solve(head,NULL,temp);
         return temp;
     }
