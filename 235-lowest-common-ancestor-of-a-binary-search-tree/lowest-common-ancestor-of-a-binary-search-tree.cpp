@@ -29,18 +29,18 @@ public:
         }
 
 
-        //case3: 
-        // p is in left subtree and q is in right subtree
-        if(p->val<root->val && q->val>root->val){
-            return root;
-        }
+//         //case3: 
+//         // p is in left subtree and q is in right subtree
+//         if(p->val<root->val && q->val>root->val){
+//             return root;
+//         }
 
 
-//case4: 
-        // p is in right subtree and q is in left subtree
-           if(p->val>root->val && q->val<root->val){
-            return root;
-        }
+// //case4: 
+//         // p is in right subtree and q is in left subtree
+//            if(p->val>root->val && q->val<root->val){
+//             return root;
+//         }
         return root;
 
     }
