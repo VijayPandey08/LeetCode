@@ -3,6 +3,34 @@ class Solution
     public:
         int longestConsecutive(vector<int> &nums)
         {
+
+
+
+            /*
+            
+            if(visited[i.first]>0){
+        continue;
+    }
+    int val = i.first;
+    
+    int target = i.first;
+    int ans = 0;
+    
+    while(m[target]>0 && visited[target]==0){
+        cout<<target<<" ";
+        visited[target]++;
+        target++;
+        ans++;
+    }
+    cout<<endl;
+
+    ans+=trail[target];
+    maxi=max(maxi,ans);
+    cout<<maxi<<"... "<<i.first<<endl;
+    
+trail[i.first]=ans;
+            
+            */
            	//     int n = a.size();
            	//     if (n == 0) return 0;
 
@@ -31,43 +59,43 @@ class Solution
 
            	// }
 
-            if (nums.size() == 0) return 0;
-           	//  if(nums.size()==1) return 1;
-            int maxi = 1;
+            // if (nums.size() == 0) return 0;
+           	// //  if(nums.size()==1) return 1;
+            // int maxi = 1;
 
-            int ans = 1;
+            // int ans = 1;
 
-            unordered_set<int> s;
-            for (auto i: nums)
-            {
-                s.insert(i);
-            }
-            vector<int> temp;
-            for (auto i: s)
-            {
-                temp.push_back(i);
-            }
-            // if (temp.size() == 1) return 1;
-            sort(temp.begin(), temp.end());
+            // set<int> s;
+            // for (auto i: nums)
+            // {
+            //     s.insert(i);
+            // }
+            // vector<int> temp;
+            // for (auto i: s)
+            // {
+            //     temp.push_back(i);
+            // }
+            // // if (temp.size() == 1) return 1;
+            // // sort(temp.begin(), temp.end());
 
-            for (auto i: temp)
-            {
-                cout << i << " ";
-            }
-            cout << endl;
-            for (int i = 1; i < temp.size(); i++)
-            {
-                if (temp[i] - temp[i - 1] == 1)
-                {
-                    ans++;
-                    maxi = max(maxi, ans);
-                }
-                else
-                {
-                    ans = 1;
-                }
-            }
-            return maxi;
+            // // for (auto i: temp)
+            // // {
+            // //     cout << i << " ";
+            // // }
+            // // cout << endl;
+            // for (int i = 1; i < temp.size(); i++)
+            // {
+            //     if (temp[i] - temp[i - 1] == 1)
+            //     {
+            //         ans++;
+            //         maxi = max(maxi, ans);
+            //     }
+            //     else
+            //     {
+            //         ans = 1;
+            //     }
+            // }
+            // return maxi;
 
            	//         vector<int> temp;
            	//        	// map<int,int > m;
@@ -99,6 +127,40 @@ class Solution
            	//        	// }
 
            	// return maxi;
+
+            if (nums.size() == 0) return 0;
+            int maxi = 1;
+            unordered_map<int,int> m,visited,trail;
+for(auto i: nums){
+    m[i]++;
+}
+for(auto i: m){
+    int ele = i.first;
+    int ans = 0;
+    while(visited[ele]==0 && m.find(ele)!=m.end()){
+        visited[ele]++;
+        ele++;
+        ans++;
+    }
+    if(visited[ele]>0){
+        ans+=trail[ele];
+    }
+    maxi = max(ans,maxi);
+    trail[i.first] = ans;
+}
+// cout<<endl;
+// for(auto i:m){
+// cout<<i.first<<" "<<i.second<<endl;
+// }
+// cout<<endl;
+// for(auto i:visited){
+// cout<<i.first<<" "<<i.second<<endl;
+// }
+// cout<<endl;
+// for(auto i:trail){
+// cout<<i.first<<" "<<i.second<<endl;
+// }
+return maxi;
 
            	    }
         };
