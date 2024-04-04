@@ -3,7 +3,7 @@ class Solution
     public:
         int longestConsecutive(vector<int> &nums)
         {
-           	//             int n = a.size();
+           	//     int n = a.size();
            	//     if (n == 0) return 0;
 
            	//     int longest = 1;
@@ -37,7 +37,7 @@ class Solution
 
             int ans = 1;
 
-            set<int> s;
+            unordered_set<int> s;
             for (auto i: nums)
             {
                 s.insert(i);
