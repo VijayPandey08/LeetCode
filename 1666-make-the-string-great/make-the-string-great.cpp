@@ -2,7 +2,8 @@ class Solution {
 public:
     string makeGood(string s) {
         stack<char> t;
-        for(int i=s.length()-1; i>=0; i--){
+t.push(s[s.length()-1]);
+        for(int i=s.length()-2; i>=0; i--){
 
             
             if(!t.empty() && (s[i]-'a'==t.top()-'A' || s[i]-'A'==t.top()-'a')){
