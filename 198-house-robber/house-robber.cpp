@@ -1,6 +1,6 @@
 class Solution {
 public:
-int solve_dp(vector<int>& nums, int index, vector<int> &dp){
+int solve_dp(vector<int>nums, int index, vector<int> &dp){
     if(index>=nums.size()){
         return 0;
     }
