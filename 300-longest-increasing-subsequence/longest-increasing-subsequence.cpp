@@ -1,21 +1,20 @@
 class Solution {
 public:
-    int lengthOfLIS(std::vector<int>& nums) {
-        if (nums.empty()) {
-            return 0;
-        }
-
-        int n = nums.size();
-        std::vector<int> dp(n, 1);
-
-        for (int i = 1; i < n; ++i) {
-            for (int j = 0; j < i; ++j) {
-                if (nums[i] > nums[j]) {
-                    dp[i] = std::max(dp[i], dp[j] + 1);
+    int lengthOfLIS(vector<int>& nums) {
+        vector<int> trail(nums.size(),0);
+        trail[0] = 1;
+        int ans = 1;
+        for(int i = 1;i<nums.size();i++){
+            int maxi = 0;
+            for(int j = 0;j<i;j++){
+                if(nums[i]>nums[j]){
+                    maxi = max(maxi,trail[j]);
                 }
             }
+            trail[i] = maxi+1;
+            ans = max(ans,trail[i]);
         }
-
-        return *std::max_element(dp.begin(), dp.end());
+        return ans;
+        
     }
 };
