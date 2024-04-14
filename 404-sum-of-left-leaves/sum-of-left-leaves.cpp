@@ -25,8 +25,23 @@ int solve_1(TreeNode* curr, TreeNode* parent){
     int right = solve_1(curr->right,curr);
     return left + right;
 }
+
+
+int solve_2(TreeNode* root, bool isLeft){
+    if(root==NULL){
+        return 0;
+    }
+    if(root->left ==NULL && root->right==NULL && isLeft==true){
+        return root->val;
+    }
+    return solve_2(root->left,true) + solve_2(root->right,false);
+
+}
     int sumOfLeftLeaves(TreeNode* root) {
         // approach 1
-        return solve_1(root,NULL);
+        // return solve_1(root,NULL);
+
+        //approach 2
+        return solve_2(root,false);
     }
 };
