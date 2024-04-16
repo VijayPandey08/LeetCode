@@ -44,6 +44,36 @@ public:
         // }
         return dp[0][0];
     }
+
+
+    int solve_so(vector<int>& nums, int cufdsrr, int prdsfev){
+        int n = nums.size();
+        // vector<vector<int>> dp(n+1, vector<int>(n+1, 0));
+        vector<int> curr(n+1,0);
+        vector<int> prev(n+1,0);
+        
+        for (int curr_index = n - 1; curr_index >= 0; curr_index--) {
+            for (int prev_index = curr_index; prev_index >= -1; prev_index--) {
+                int include = 0;
+                int exclude = 0;
+                if (prev_index == -1 || nums[curr_index] > nums[prev_index]) {
+                    include = 1 + prev[curr_index+1];
+                }
+
+                exclude =  prev[prev_index+1];
+
+                 curr[prev_index + 1] = max(include, exclude);
+            }
+            prev = curr;
+        }
+        // for(auto i:dp){
+        //     for(auto j:i){
+        //         cout<<j<<"  ";
+        //     }
+        //     cout<<endl;
+        // }
+        return curr[0];
+    }
     int lengthOfLIS(vector<int>& nums) {
         // jayant ka tareeka jisme ek trail vector bana lete h.. same as
         // tabulation vector<int> trail(nums.size(),0); trail[0] = 1; int ans =
