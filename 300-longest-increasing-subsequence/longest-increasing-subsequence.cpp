@@ -36,7 +36,7 @@ public:
         int prev = -1;
         int curr = 0;
         int n=nums.size();
-        vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
+        vector<vector<int>> dp(n,vector<int>(n,-1));
         return solve_dp(nums, curr, prev,dp);
     }
 };
