@@ -22,8 +22,6 @@ public:
             root->left = temp1;
             root->right = temp2;
             return;
-
-
         }
 
 
