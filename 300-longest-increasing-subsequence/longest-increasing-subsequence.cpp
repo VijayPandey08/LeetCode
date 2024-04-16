@@ -57,14 +57,14 @@ public:
                 int include = 0;
                 int exclude = 0;
                 if (prev_index == -1 || nums[curr_index] > nums[prev_index]) {
-                    include = 1 + prev[curr_index+1];
+                    include = 1 + curr[curr_index+1];
                 }
 
-                exclude =  prev[prev_index+1];
+                exclude =  curr[prev_index+1];
 
-                 curr[prev_index + 1] = max(include, exclude);
+                 prev[prev_index + 1] = max(include, exclude);
             }
-            prev = curr;
+            curr = prev;
         }
         // for(auto i:dp){
         //     for(auto j:i){
