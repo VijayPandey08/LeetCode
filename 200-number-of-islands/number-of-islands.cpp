@@ -17,7 +17,7 @@ int numIslands(vector<vector<char>>& grid) {
 
     return numIslands;
 }
-private:
+// private:
     void dfs(vector<vector<char>>& grid, int i, int j) {
         if (i < 0 || i >= grid.size() || j < 0 || j >= grid[0].size() ||
             grid[i][j] != '1') {
