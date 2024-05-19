@@ -12,14 +12,14 @@ public:
             int b = i[1];
             //   b------->a
             adj[b].push_back(a);
-            indegree[a]++;
+            // indegree[a]++;
         }
 
-        // for (int u = 0; u < numCourses; u++) {
-        //     for (auto v : adj[u]) {
-        //         indegree[v]++;
-        //     }
-        // }
+        for (int u = 0; u < numCourses; u++) {
+            for (auto v : adj[u]) {
+                indegree[v]++;
+            }
+        }
 
         for (int i = 0; i < numCourses; i++) {
             if (indegree[i] == 0) {
