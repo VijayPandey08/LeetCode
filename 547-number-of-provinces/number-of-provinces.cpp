@@ -1,5 +1,6 @@
 class Solution {
 public:
+int n;
 
 void dfs(unordered_map<int,vector<int>> &adj, int i, vector<bool> &visited){
     visited[i]=true;
@@ -24,8 +25,22 @@ void bfs(unordered_map<int,vector<int>> &adj, int i, vector<bool> &visited){
         }
     }
 }
+void bfs_1(vector<vector<int>>& isConnected, int i, vector<bool> &visited){
+    visited[i]=true;
+    queue<int> q;
+    q.push(i);
+    while(!q.empty()){
+        int u =q.front();
+        q.pop();
+        for(int v=0; v<n; v++){
+            if(!visited[v] && isConnected[i][v]==1){
+                bfs_1(isConnected,v,visited);
+            }
+        }
+    }
+}
     int findCircleNum(vector<vector<int>>& isConnected) {
-        int n=isConnected.size();
+         n=isConnected.size();
         int m=isConnected[0].size();
         // let us first make a graph 
         unordered_map<int,vector<int>> adj;
@@ -42,7 +57,8 @@ void bfs(unordered_map<int,vector<int>> &adj, int i, vector<bool> &visited){
         for(int i=0; i<n; i++){
             if(!visited[i]){
                 // dfs(adj,i,visited);
-                bfs(adj,i,visited);
+                // bfs(adj,i,visited);
+                bfs_1(isConnected, i, visited);
                 count++;
             }
         }
