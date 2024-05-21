@@ -1,48 +1,44 @@
 class Solution {
 public:
-vector<int> parent;
-vector<int> rank;
-int find(int x){
-    if(parent[x]==x){
-        return x;
-    }
-    return parent[x]=find(parent[x]);
-}
-
-void Union(int x, int y){
-    int x_parent = find(x);
-    int y_parent = find(y);
-    if(rank[x_parent]<rank[y_parent]){
-        parent[x_parent]=y_parent;
-    }
-    else if(rank[y_parent]<rank[x_parent]){
-parent[y_parent]=x_parent;
-    }
-    else{
-        parent[y_parent]=x_parent;
-        rank[x_parent]++;
-    }
-}
-    bool equationsPossible(vector<string>& equations) {
-        parent.resize(26,0);
-        for(int i=0; i<26; i++){
-            parent[i]=i;
+    int find(int i, vector<int>& parent) {
+        if (parent[i] == i) {
+            return i;
         }
-        rank.resize(26,0);
-
-        for(auto i:equations){
-            if(i[1]== '='){
-                Union(i[0]-'a', i[3]-'a');
+        return parent[i] = find(parent[i], parent);
+    }
+    void Union(int x, int y, vector<int>& parent, vector<int>& rank) {
+        int x_parent = find(x, parent);
+        int y_parent = find(y, parent);
+        if (x_parent == y_parent)
+            return;
+        if (rank[x_parent] > rank[y_parent]) {
+            parent[y_parent] = x_parent;
+        }
+        else if (rank[y_parent] > rank[x_parent]) {
+            parent[x_parent] = y_parent;
+        } else {
+            parent[x_parent] = y_parent;
+            rank[y_parent]++;
+        }
+    }
+    bool equationsPossible(vector<string>& equations) {
+        int V = equations.size();
+        vector<int> parent(26, 0);
+        for (int i = 0; i < 26; i++) {
+            parent[i] = i;
+        }
+        vector<int> rank(26, 0);
+        for (auto i : equations) {
+            if (i[1] == '=') {
+                Union(i[0] - 'a', i[3] - 'a', parent, rank);
             }
         }
-        for(auto i:equations){
-            if(i[1]== '!'){
-                int x = find(i[0]-'a');
-                int y = find(i[3]-'a');
-                if(x==y) return false;
+        for (string& i : equations) {
+            if (i[1] == '!') {
+                if (find(i[0] - 'a', parent) == find(i[3] - 'a', parent))
+                    return false;
             }
         }
         return true;
-
     }
 };
