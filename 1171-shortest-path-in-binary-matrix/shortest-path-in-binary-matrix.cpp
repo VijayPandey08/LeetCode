@@ -19,11 +19,15 @@ bool isSafe(int x_, int y_){
         vector<vector<int>> result(n,vector<int>(m,INT_MAX));
         result[0][0]=0;
         priority_queue<P, vector<P>, greater<P>> pq;
+        // since sabka distance one hein, toh hum normal queue se bhi kaam chala skte h
+        // queue<P> pq; --> queue ke lie change 1
         pq.push({0,{0,0}});
 
         while(!pq.empty()){
             int d = pq.top().first;
+            // int d = pq.front().first; --> change 2
             pair<int,int> node = pq.top().second;
+            // pair<int,int> node = pq.front().second; --> change 3 thats it
             int node_x = node.first;
             int node_y = node.second;
             pq.pop();
