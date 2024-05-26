@@ -1,7 +1,9 @@
 class Solution {
 public:
+// / this is calssical implementation of prims algorithm...... /////
 
-    int prim_algo(vector<vector<pair<int,int>>> &adj, int V) {
+
+    int prims_algo(vector<vector<pair<int,int>>> &adj, int V) {
         // Priority queue to store the minimum weight edge at top
         priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
         // Start with node 0 (with 0 distance)
@@ -54,7 +56,7 @@ public:
         }
 
         // Run Prim's algorithm to get the minimum spanning tree cost
-        return prim_algo(adj, V);
+        return prims_algo(adj, V);
 
     }
 };
