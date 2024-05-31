@@ -1,26 +1,27 @@
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
-        vector<int> result(2, 0);
-        int index = 0;
-        int n = nums.size();
+        int overall_xor = 0;
+        for (int n : nums) {
+            overall_xor ^= n;
+        }
 
-        for (int i = 0; i < n; i++) {
-            bool found = false;
-            for (int j = 0; j < n; j++) {
-                if (i != j && nums[i] == nums[j]) {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                result[index++] = nums[i];
-                if (index == 2) {
-                    break;
-                }
+        int first_group_xor = 0;
+        int second_group_xor = 0;
+
+        int bit_pos_dif = 0;
+        while (((overall_xor >> bit_pos_dif) & 1) != 1) {
+            bit_pos_dif++;
+        }
+
+        for (int num : nums) {
+            if (((num >> bit_pos_dif) & 1) == 1) {
+                first_group_xor ^= num;
+            } else {
+                second_group_xor ^= num;
             }
         }
 
-        return result;
+        return {first_group_xor, second_group_xor};
     }
 };
