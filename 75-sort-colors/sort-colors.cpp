@@ -1,31 +1,25 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-        int s=0;
-        int e=nums.size()-1;
-        int i=0;
-        while(i<=e){
-            if(nums[i]==0){
-                swap(nums[s],nums[i]);
-                s++;
-                i++;
-                
+        // hi -fi question h, angrejo ki bhansha mein, dutch national flag algorithm mein based
+        int s=0;  // yeh starting pointer h, ise bs zero se matlab h
+        int m=0; // yeh h asli khiladi, pura iterate krega jo shi dhng se
+        int e=nums.size()-1; // yeh high pointer h ise bs 2 se mtlb h
+
+        while(m<=e){
+            if(nums[m]==0){
+                swap(nums[s],nums[m]);
+                    m++;
+                    s++;
             }
-            else if(nums[i]==2){
-                swap(nums[i],nums[e]);
-                e--;
-                
+            else if(nums[m]==1){
+                m++;
             }
             else{
-                i++;
+                swap(nums[m],nums[e]);
+                e--;
             }
-
-            // for(auto i:nums){
-            //     cout<<i<<" ";
-            // }
-            // cout<<endl;
         }
-        // return nums;
-        
+        return ;
     }
 };
