@@ -1,34 +1,43 @@
 class Solution {
 public:
     int findWinningPlayer(vector<int>& skills, int k) {
-        // Find the maximum skill value
-        int maxi = *max_element(skills.begin(), skills.end());
-
-        // If k is greater than or equal to the number of players, the player with maximum skill wins
-        if (k >= skills.size()) {
-            return find(skills.begin(), skills.end(), maxi) - skills.begin();
+        int maxi = INT_MIN;
+        for (auto i : skills) {
+            maxi = max(maxi, i);
         }
 
-        deque<int> q(skills.begin(), skills.end());
-        unordered_map<int, int> win_count;
-        int current_winner = 0;
+        if (k >= skills.size()) {
 
-        while (true) {
-            int a = q.front(); q.pop_front();
-            int b = q.front(); q.pop_front();
+            for (int i = 0; i < skills.size(); i++) {
+                if (maxi == skills[i])
+                    return i;
+            }
+        }
 
+        vector<pair<int, int>> p;
+        deque<int> q;
+        for (auto i : skills) {
+            q.push_back(i);
+        }
+        map<int, int> m;
+        int temp = 0;
+        while(true) {
+            int a = q.front();
+            q.pop_front();
+            int b = q.front();
+            q.pop_front();
             if (a > b) {
-                win_count[a]++;
-                if (win_count[a] >= k) {
-                    current_winner = a;
+                m[a]++;
+                if (m[a] >= k) {
+                    temp = a;
                     break;
                 }
                 q.push_front(a);
                 q.push_back(b);
             } else {
-                win_count[b]++;
-                if (win_count[b] >= k) {
-                    current_winner = b;
+                m[b]++;
+                if (m[b] >= k) {
+                    temp = b;
                     break;
                 }
                 q.push_front(b);
@@ -36,6 +45,11 @@ public:
             }
         }
 
-        return find(skills.begin(), skills.end(), current_winner) - skills.begin();
+        for (int i = 0; i < skills.size(); i++) {
+            if (skills[i] == temp) {
+                return i;
+            }
+        }
+        return 0;
     }
 };
