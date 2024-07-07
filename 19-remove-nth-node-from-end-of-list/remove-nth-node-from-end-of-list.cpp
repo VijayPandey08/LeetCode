@@ -26,9 +26,9 @@ public:
     }
 
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        if (head == NULL || (head->next == NULL && n == 1)) {
-            return NULL;
-        }
+        // if (head == NULL || (head->next == NULL && n == 1)) {
+        //     return NULL;
+        // }
 
         head = reverseLL(head);
         ListNode* temp = head;
