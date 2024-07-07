@@ -10,17 +10,18 @@
  */
 class Solution {
 public:
-    void solve(ListNode* curr , ListNode* prev,ListNode* &head){
-        if(curr==NULL) return;
-        head = curr;
-        solve(curr->next,curr,head);
-        curr->next =prev;
-    }
-
     ListNode* reverseList(ListNode* head) {
-        if(head==NULL) return head;
-        ListNode* temp = NULL;
-        solve(head,NULL,temp);
-        return temp;
+        ListNode* curr_node = head;
+        ListNode* prev_node = NULL;
+        // ListNode* next_node = NULL;
+
+        while(curr_node!=NULL){
+            ListNode* next_node = curr_node->next;
+            curr_node->next = prev_node;
+            prev_node = curr_node;
+            curr_node = next_node;
+        }
+        head = prev_node;
+        return head;
     }
 };
