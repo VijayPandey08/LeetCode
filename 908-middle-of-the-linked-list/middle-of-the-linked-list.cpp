@@ -22,17 +22,17 @@ ListNode* temp = head;
             temp = temp->next;
         }
 
-        int mid_position = (length/2) + 1;
+//         int mid_position = (length/2) + 1;
 
-        ListNode* mid = head;
+//         ListNode* mid = head;
 
-        while(mid_position!=1){
-            mid = mid->next;
-            mid_position--;
+//         while(mid_position!=1){
+//             mid = mid->next;
+//             mid_position--;
 
-        }
+//         }
 
-        return mid;
+//         return mid;
 
 
 // ---------------- approach 2 -------------//
@@ -42,17 +42,17 @@ ListNode* temp = head;
         // pointer) reaches the end of the linked list, at that particular time
         // the slow pointer is exactly at the middle point of the ll
 
-        // ListNode* fast = head;
-        // ListNode* slow = head;
+        ListNode* fast = head;
+        ListNode* slow = head;
 
-        // while(fast->next!=NULL){
-        //     fast = fast->next;
-        //     if(fast->next!=NULL){
-        //         fast = fast->next;
-        //         slow = slow->next;
-        //     }
-        // }
-
-        // return slow;
+        while(fast->next!=NULL){
+            fast = fast->next;
+            if(fast->next!=NULL){
+                fast = fast->next;
+                slow = slow->next;
+            }
+        }
+        if(length%2==0) return slow->next;
+        return slow;
     }
 };
