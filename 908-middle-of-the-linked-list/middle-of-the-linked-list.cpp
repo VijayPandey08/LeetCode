@@ -10,49 +10,44 @@
  */
 class Solution {
 public:
+    int getlen(ListNode* head){
+        int count=0;
+        ListNode* temp=head;
+        while(temp!=NULL){
+            count++;
+            temp=temp->next;
+        }
+        return count;
+    } 
     ListNode* middleNode(ListNode* head) {
-// ----------------- approach 1 --------------//
-        // approach one is to find the length of the linked list and based upon
-        // the length is even or odd you need to calculate the centre point, the
-        // formula is: (length/2 + 1);
-ListNode* temp = head;
-        int length = 1;
-        while(temp->next!=NULL){
-            length++;
-            temp = temp->next;
+  
+    // acchi approach -> slow and fast pointer -> single pass
+    // tortoise algorithm
+    ListNode *fast=head;
+    ListNode *slow=head;
+
+    while(fast!=NULL){
+        fast=fast->next;
+        if(fast!=NULL){
+            fast=fast->next;
+            slow=slow->next;
         }
-
-//         int mid_position = (length/2) + 1;
-
-//         ListNode* mid = head;
-
-//         while(mid_position!=1){
-//             mid = mid->next;
-//             mid_position--;
-
-//         }
-
-//         return mid;
-
-
-// ---------------- approach 2 -------------//
-        // will talk about the second approach which is the hare and tortoise
-        // algorithm, in which we have two pointer the fast and the slow
-        // pointer, when the fast pointer(which walks in 2x speed as of slow
-        // pointer) reaches the end of the linked list, at that particular time
-        // the slow pointer is exactly at the middle point of the ll
-
-        ListNode* fast = head;
-        ListNode* slow = head;
-
-        while(fast->next!=NULL){
-            fast = fast->next;
-            if(fast->next!=NULL){
-                fast = fast->next;
-                slow = slow->next;
-            }
-        }
-        if(length%2==0) return slow->next;
-        return slow;
+    }  
+    return slow;
+  
+  
+  
+  
+  
+  
+        // normal iterative approach-> length nikalo -> n/2 +1 vali position ko print kr do 
+        // int n=getlen(head);
+        // int position = n/2 +1;
+        //     ListNode* temp1=head;
+        // while(position!=1){
+        //     position--;
+        //     temp1=temp1->next;
+        // }
+        // return temp1;
     }
 };
