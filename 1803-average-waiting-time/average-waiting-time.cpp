@@ -1,26 +1,29 @@
+//Simple Simulation
+//T.C : O(n)
+//S.C : O(1)
 class Solution {
 public:
     double averageWaitingTime(vector<vector<int>>& customers) {
-        vector<int> temp;
-        int start = customers[0][0];
-        for (auto i : customers) {
-            if (start < i[0]) {
-                start = i[0];
-                start += i[1];
-                temp.push_back(start - i[0]);
-            } else {
-                start += i[1];
-                int temp1 = start - i[0];
-                temp.push_back(temp1);
+        int n = customers.size();
+
+        double totalWaitTime = 0;
+        int currTime         = 0;
+
+        for(auto &vec : customers) {
+            int arrivalTime = vec[0];
+            int cookTime   = vec[1];
+
+            if(currTime < arrivalTime) {
+                currTime = arrivalTime;
             }
-        }
-        double total = 0;
-        for (auto i : temp) {
-            total += i;
+
+            int waitTime = currTime + cookTime - arrivalTime;
+
+            totalWaitTime += waitTime;
+
+            currTime += cookTime;
         }
 
-        double size = customers.size();
-        double ans = total / customers.size();
-        return ans;
+        return totalWaitTime/n;
     }
 };
