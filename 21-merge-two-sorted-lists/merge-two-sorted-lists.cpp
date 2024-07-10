@@ -1,6 +1,13 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+
+        //--------- intution base approach -----------//
+        // ek nayi LL banao aur usme jo chota part ho vo jodh te jao
+        // bs ek cheez dhyan rkhni h, ki jha pr bhi compare krne vale ho dono LL
+        // ko vha pe ek additional check lagana pdega ki dono LL mein element
+        // present bhi h ya nhi
+        
         ListNode* temp = NULL;
         ListNode* head = NULL;
 
