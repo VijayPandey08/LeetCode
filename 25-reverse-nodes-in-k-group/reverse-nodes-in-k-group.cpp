@@ -23,7 +23,7 @@ public:
         // if (head == NULL || head->next == NULL) {
         //     return head;
         // }
-        
+
         ListNode* temp = head;
         ListNode* curr = temp;
         ListNode* prev = NULL;
@@ -43,8 +43,8 @@ public:
             pos++;
         }
 
-        ListNode* recAns = NULL;
         if (curr != NULL) {
+            ListNode* recAns = NULL;
             recAns = reverseKGroup(curr, k);
             head->next = recAns;
         }
