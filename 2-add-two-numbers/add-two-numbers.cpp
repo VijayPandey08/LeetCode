@@ -21,20 +21,24 @@ public:
 
         while (temp1 != NULL || temp2 != NULL) {
             int sum = 0;
-            if (temp1)
+            if (temp1){
+
                 sum += temp1->val;
-            if (temp2)
+                temp1 = temp1->next;
+            }
+            if (temp2){
+
                 sum += temp2->val;
+                temp2 = temp2->next;
+            }
             sum += carry;
             int digit = sum % 10;
             carry = sum / 10;
             ListNode* new_node = new ListNode(digit);
             curr->next = new_node;
             curr = new_node;
-            if (temp1)
-                temp1 = temp1->next;
-            if (temp2)
-                temp2 = temp2->next;
+            // if (temp1)
+            // if (temp2)
         }
 
         if (carry) {
