@@ -13,23 +13,20 @@ public:
     }
 };
 */
-
+//Approach-1 (Using O(n) space)
 class Solution {
 public:
     Node* copyRandomList(Node* head) {
-        if (!head) return head;
-
-        map<Node*, Node*> m;
+        if(!head)
+            return NULL;
+        map<Node*, Node*> mp;
         Node* curr = head;
         Node* prev = NULL;
         Node* newHead = NULL;
-
-        // First pass: create new nodes and store them in the map
-        while (curr) {
+        while(curr) {
             Node* temp = new Node(curr->val);
-            m[curr] = temp;
-
-            if (!newHead) {
+            mp[curr] = temp;
+            if(newHead == NULL) {
                 newHead = temp;
                 prev = newHead;
             } else {
@@ -38,21 +35,57 @@ public:
             }
             curr = curr->next;
         }
-
-        // Second pass: set the random pointers
+        
         curr = head;
         Node* newCurr = newHead;
-        while (curr) {
-            if (curr->random == NULL) {
+        while(curr) {
+            if(curr->random == NULL) {
                 newCurr->random = NULL;
             } else {
-                newCurr->random = m[curr->random];
+                newCurr->random = mp[curr->random];
             }
-
+            
             newCurr = newCurr->next;
             curr = curr->next;
         }
-
         return newHead;
+        //         if(!head)
+//             return NULL;
+        
+//         Node* curr = head;
+        
+//         while(curr) {
+//             Node* currNext = curr->next;
+//             curr->next = new Node(curr->val);
+//             curr->next->next = currNext;
+//             curr = currNext;
+//         }
+        
+//         //Deep copy of random pointers
+//         curr = head;
+//         while(curr && curr->next) {
+//             if(curr->random == NULL) {
+//                 curr->next->random = NULL;
+//             } else {
+//                 curr->next->random = curr->random->next;
+//             }
+//             curr = curr->next->next;
+//         }
+        
+//         //Deep copy of next pointers and recovering old linked list
+//         Node* newHead = head->next;
+//         Node* newCurr = newHead;
+//         curr          = head;
+//         while(curr && newCurr) {
+//             curr->next    = curr->next ? curr->next->next : NULL;
+            
+//             newCurr->next = newCurr->next ? newCurr->next->next : NULL;
+            
+//             curr = curr->next;
+//             newCurr = newCurr->next;
+//         }
+       
+//         return newHead; 
     }
 };
+
