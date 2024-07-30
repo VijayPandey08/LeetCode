@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<vector<int>> ans;
 
-    void solve(vector<int>& nums, int n, int index, vector<int> temp) {
+    void solve(vector<int>& nums, int n, int index, vector<int> &temp) {
         if (index >= n) {
             ans.push_back(temp);
             return;
@@ -21,7 +21,6 @@ public:
         solve(nums, n, index, temp);
 
         set<vector<int>> s(ans.begin(), ans.end());
-
         vector<vector<int>> result(s.begin(), s.end());
 
         return result;
