@@ -1,92 +1,72 @@
+
+// another approach using for loop for determining loop , it is more optimized, unique find krne ke lie, duplicate hatane ke lie bdiya tarika h yeh,   vrna hume set banana pdega jo dikkat de skta h.....!!!
 class Solution {
 public:
     vector<vector<int>> ans;
+    int n;
 
-    void solve(vector<int>& nums, int n, int index, vector<int> &temp) {
-        if (index >= n) {
-            ans.push_back(temp);
-            return;
-        }
-        temp.push_back(nums[index]);
-        solve(nums, n, index + 1, temp);
-        temp.pop_back();
-        solve(nums, n, index + 1, temp);
+    void solve(vector<int>& nums, int idx, vector<int> tmp) {
+         
+            ans.push_back(tmp);
+         
+         for(int j=idx; j<n; j++) {
+             if(j > idx && nums[j] == nums[j-1]) continue;
+             tmp.push_back(nums[j]);
+             solve(nums, j+1, tmp);
+             tmp.pop_back();
+         }
+         
     }
 
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        vector<int> temp;
-        int n = nums.size();
-        int index = 0;
-        sort(nums.begin(), nums.end());
-        solve(nums, n, index, temp);
+         
+         n = nums.size();
+         sort(nums.begin(), nums.end());
+         vector<int> tmp;
+         solve(nums, 0, tmp); 
 
-        set<vector<int>> s(ans.begin(), ans.end());
-        vector<vector<int>> result(s.begin(), s.end());
-
-        return result;
+         return ans;
     }
 };
 
-// #include <vector>
-// #include <set>
-// #include <algorithm>
+
+
+
+
+
+
+
+
+
+
 
 // class Solution {
 // public:
-//     std::vector<std::vector<int>> ans;
+//     vector<vector<int>> ans;
 
-//     void solve(std::vector<int>& nums, int n, int index, std::vector<int>
-//     temp) {
+//     void solve(vector<int>& nums, int n, int index, vector<int> &temp) {
 //         if (index >= n) {
 //             ans.push_back(temp);
 //             return;
 //         }
 //         temp.push_back(nums[index]);
 //         solve(nums, n, index + 1, temp);
-//         temp.pop_back(); // Backtrack
+//         temp.pop_back();
 //         solve(nums, n, index + 1, temp);
 //     }
 
-//     std::vector<std::vector<int>> subsetsWithDup(std::vector<int>& nums) {
-//         ans.clear(); // Clear previous results
-//         std::sort(nums.begin(), nums.end()); // Sort the input to handle
-//         duplicates std::vector<int> temp; int n = nums.size(); int index = 0;
-
+//     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+//         vector<int> temp;
+//         int n = nums.size();
+//         int index = 0;
+//         sort(nums.begin(), nums.end());
 //         solve(nums, n, index, temp);
 
-//         std::set<std::vector<int>> s(ans.begin(), ans.end()); // Use set to
-//         remove duplicates std::vector<std::vector<int>> result(s.begin(),
-//         s.end()); // Convert set to vector
+//         set<vector<int>> s(ans.begin(), ans.end());
+//         vector<vector<int>> result(s.begin(), s.end());
 
 //         return result;
 //     }
 // };
 
-// class Solution {
-// public:
-//     vector<vector<int>> ans;
 
-//     void solve(vector<int>& nums, int n, int index, vector<int> temp) {
-//         if(index >= n) {
-//             ans.push_back(temp);
-//             return;
-//         }
-//         solve(nums, n, index + 1, temp);
-//         temp.push_back(nums[index]);
-//         solve(nums, n, index + 1, temp);
-//     }
-
-//     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-//         ans.clear();  // Clear previous results
-//         sort(nums.begin(), nums.end());  // Sort the input to handle
-//         duplicates vector<int> temp; int n = nums.size(); int index = 0;
-
-//         solve(nums, n, index, temp);
-
-//         // Remove duplicates
-//         sort(ans.begin(), ans.end());
-//         ans.erase(unique(ans.begin(), ans.end()), ans.end());
-
-//         return ans;
-//     }
-// };
