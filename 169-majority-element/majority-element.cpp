@@ -1,19 +1,20 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        map<int,int> m;
-        for(auto i:nums){
-            m[i]++;
-        }
-        int s = nums.size();
-        int n = (s/2) +1;
-        cout<<n;
-
-        for(int i=0; i<s; i++){
-            if(m[nums[i]]>=n){
-                return nums[i];
+        int ans=nums[0];
+        int count=1;
+        for(int i=1; i<nums.size()-1; i++){
+            if(ans==nums[i]){
+                count++;
             }
+            else{
+                count--;
+                if(count<=0){
+                    ans=nums[i+1];
+                }
+            }
+
         }
-        return 0;
+        return ans;
     }
 };
