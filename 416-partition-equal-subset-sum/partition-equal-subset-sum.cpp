@@ -1,7 +1,7 @@
 class Solution {
 public:
 
-    int dp[201][10000];
+    int dp[201][100000];
     bool solve(vector<int>& nums, int target, int index) {
         if (target == 0) {
             return true;
