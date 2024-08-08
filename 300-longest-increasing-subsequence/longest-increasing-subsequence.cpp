@@ -12,7 +12,8 @@ public:
                 dp[idx] = nums[i];
             }
         }
-
+        // lower_bound --->   >= target
+        // upper_bound --->   > target
         // for(auto i:dp){
         //     cout<<i<<" ";
         // }
