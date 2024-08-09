@@ -1,39 +1,31 @@
 class Solution {
 public:
-    int uniquePathsWithObstacles(vector<vector<int>>& grid) {
-        int m = grid.size();
-        int n = grid[0].size();
-        if(grid[0][0]==1 || grid[m-1][n-1] == 1 ){
+    int dp[101][101];
+
+    int solve(int m, int n, int i, int j,vector<vector<int>>& grid) {
+        if (i > m || j > n) {
             return 0;
         }
 
-grid[0][0]=1;
-        for(int i=0; i<m; i++){
-            for(int j=0; j<n; j++){
-                if(i==0 && j==0) continue;
-                if( grid[i][j]==1){
-                    grid[i][j]=0;
-                }
-                else{
-                    if(i-1>=0){
-                        grid[i][j]+= grid[i-1][j];
-                    }
-
-                    if(j-1>=0){
-                        grid[i][j]+= grid[i][j-1];
-                    }
-
-                }
-            }
+        if(grid[i][j]==1){
+            return 0;
+        }
+        if (i == m && j == n) {
+            return 1;
         }
 
-
-        for(auto i:grid){
-            for(auto j:i){
-                cout<<j<<" ";
-            }
-            cout<<endl;
+        if (dp[i][j] != -1) {
+            return dp[i][j];
         }
-        return grid[m-1][n-1];
+
+        int ans = solve(m, n, i + 1, j,grid) + solve(m, n, i, j + 1,grid);
+        return dp[i][j] = ans;
+    }
+    int uniquePathsWithObstacles(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+        memset(dp, -1, sizeof(dp));
+
+        return solve(m - 1, n - 1, 0, 0,grid);
     }
 };
