@@ -1,6 +1,5 @@
 class Solution {
 public:
-
     int dp[201][100000];
     bool solve(vector<int>& nums, int target, int index) {
         if (target == 0) {
@@ -20,10 +19,42 @@ public:
         if (sum & 1)
             return false;
         int target = sum >> 1;
+        int n = nums.size();
+        int dpp[n+1][target+1];
 
-        int index = 0;
-        int n=nums.size();
-        memset(dp,-1,sizeof(dp));
-        return solve(nums, target, index);
+        for(int i=0; i<n+1; i++){
+            for(int j=0; j<target+1; j++){
+                if(i==0 && j==0){
+                    dpp[i][j] =1;
+                }
+                else if(i==0){
+                      dpp[i][j] = 0;
+                }
+                else if(j==0){
+                    dpp[i][j] =1;
+
+                }
+                else{
+                        dpp[i][j] = dpp[i-1][j];   // not take
+                        if(j-nums[i-1] >=0) dpp[i][j] |=  dpp[i-1][j-nums[i-1]]; //take
+                }
+            }
+        }
+
+        return dpp[n][target];
+/*
+T F F F F
+T
+T
+T
+
+
+*/
+
+
+        // int index = 0;
+        // int n=nums.size();
+        // memset(dp,-1,sizeof(dp));
+        // return solve(nums, target, index);
     }
 };
