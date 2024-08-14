@@ -1,7 +1,7 @@
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        vector<int> dp(nums.size()+1,-1);
+        vector<int> dp(nums.size(),-1);
         dp[0] = nums[0];
         if(nums.size()==1) return nums[0];
         dp[1] = max(nums[0],nums[1]);
