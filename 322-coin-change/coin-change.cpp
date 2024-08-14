@@ -1,23 +1,35 @@
 class Solution {
 public:
-    int coinChange(vector<int>& coins, int amount) {
-        vector<int> dp(amount+1,INT_MAX);
 
-        dp[0] = 0;
+int solve(vector<int> &coins, int amount, int ans, vector<int> &dp){
+    if(amount ==0){
+        return 0 ;
+    }
 
-        for(int i=1; i<amount+1; i++){
-            int mini = INT_MAX;
-            for(auto j:coins){
-                if(i>=j){
-                   mini = min(mini,dp[i-j]);
-                }
-            }
-            if(mini!=INT_MAX){
-                dp[i] = 1 +mini;
+    if(dp[amount]!=-1){
+        return dp[amount];
+    }
+
+    int mini = INT_MAX;
+
+    for(int i=0; i<coins.size(); i++){
+        if(amount>=coins[i]){
+            int ans = solve(coins,amount - coins[i], ans, dp);
+            if(ans!=INT_MAX){
+                mini = min(mini,1+ ans);
             }
         }
+        
+    }
+        return dp[amount] = mini;
+}
+    int coinChange(vector<int>& coins, int amount) {
+        int ans = 0;
+        vector<int> dp(amount+1,-1);
+        int temp = solve(coins,amount,ans,dp);
 
-        if(dp[amount]==INT_MAX) return -1;
-        return dp[amount];
+
+        if(temp==INT_MAX) return -1;
+        return temp;
     }
 };
