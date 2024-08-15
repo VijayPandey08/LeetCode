@@ -10,25 +10,29 @@ public:
         if (index >= n) {
             return INT_MAX;
         }
-        if(dp[index]!= -1) return dp[index];
+        if (dp[index] != -1)
+            return dp[index];
         int mini = INT_MAX;
         for (int i = 1; i <= nums[index]; i++) {
-            mini = min(mini, solve(nums, index+i));
+            mini = min(mini, solve(nums, index + i));
         }
-        if (mini != INT_MAX) return dp[index] = (1+mini);
+        if (mini != INT_MAX)
+            return dp[index] = (1 + mini);
         return dp[index] = (mini);
     }
 
     int jump(vector<int>& nums) {
 
         int index = 0;
-        memset(dp,-1,sizeof(dp));
+        memset(dp, -1, sizeof(dp));
         return solve(nums, index);
 
         //--------------- tabulation-----------------//
         int n = nums.size();
         vector<int> dpp(nums.size(), INT_MAX);
-        dpp[n - 1] = 0;
+        dpp[n - 1] =
+            0; // hum peeche se traverse kr rhe h aur maan rhe h ki last step pr
+               // pahuchne ke lie ek bhi jum lene ki zrurt nhi (AtQ)
 
         for (int i = n - 2; i >= 0; i--) {
             int mini = INT_MAX;
