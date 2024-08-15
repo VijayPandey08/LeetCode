@@ -1,6 +1,7 @@
 class Solution {
 public:
-    unordered_map<int,int> m;
+    // unordered_map<int,int> m;
+    int dp[10005];
     int solve(vector<int>& nums, int index) {
         int n = nums.size();
         if (index == n - 1) {
@@ -9,18 +10,19 @@ public:
         if (index >= n) {
             return INT_MAX;
         }
-        if(m.find(index)!= m.end()) return m[index];
+        if(dp[index]!= -1) return dp[index];
         int mini = INT_MAX;
         for (int i = 1; i <= nums[index]; i++) {
             mini = min(mini, solve(nums, index+i));
         }
-        if (mini == INT_MAX) return m[index] = mini;
-        return m[index] = (mini + 1);
+        if (mini != INT_MAX) return dp[index] = (1+mini);
+        return dp[index] = (mini);
     }
 
     int jump(vector<int>& nums) {
 
         int index = 0;
+        memset(dp,-1,sizeof(dp));
         return solve(nums, index);
 
         //--------------- tabulation-----------------//
