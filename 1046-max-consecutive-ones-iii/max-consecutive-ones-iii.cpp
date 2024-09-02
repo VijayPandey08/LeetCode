@@ -11,6 +11,10 @@ public:
 
             if (nums[right] == 0) {
                 k--;
+                right++;
+            }
+            else{
+                right++;
             }
 
             while (k < 0) {
@@ -20,8 +24,8 @@ public:
                 left++;
             }
 
-            maxi = max(maxi, right - left + 1);
-            right++;
+            maxi = max(maxi, right - left);
+            // right++;
         }
 
         return maxi;
