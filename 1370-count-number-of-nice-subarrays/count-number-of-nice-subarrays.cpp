@@ -1,23 +1,35 @@
 class Solution {
 public:
     int numberOfSubarrays(vector<int>& nums, int k) {
-        unordered_map<int, int> m;
-        int oddCount = 0;
-        m[oddCount] = 1;
+        int left = 0;
+        int right = 0;
 
-        int ans = 0;
+        int total = 0;
 
-        for (int i = 0; i < nums.size(); i++) {
-            if (nums[i] % 2 != 0) {
-                oddCount++;
+        int count = 0;
+
+        map<int, int> m; // kitne odd numbers vale kitne khiladi h
+        m[0] = 1;
+
+        while (right < nums.size()) {
+
+            if (nums[right] % 2 != 0) {
+                count++;
             }
-            if (m.count(oddCount - k)) {
-                ans += m[oddCount - k];
+
+            m[count]++;
+
+            if (m.find(count - k) != m.end()) {
+                total += m[count - k];
             }
 
-            m[oddCount]++;
+            right++;
         }
 
-        return ans;
+        for(auto i:m){
+            cout<<i.first<<i.second<<endl;
+        }
+
+        return total;
     }
 };
