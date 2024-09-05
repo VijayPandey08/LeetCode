@@ -1,33 +1,48 @@
 class MyStack {
 public:
-queue<int> q;
+
+// Method 1 : using 2 queue
+// Step 1: push x in q2;
+// Step 2: transfer q1 -> q2;
+// Step 3: transfer q2 -> q1;
+
+
+// Method 2 : using 1 stack
+// Step 1: normally push in q
+// Step 2: reverse the queue from starting to q.size()-1;
+
+
+//----------------- Method 1 ------------
+queue<int> q1;
+queue<int> q2;
     MyStack() {
         
     }
     
     void push(int x) {
-        //sabse pehle pehla element push kr do queue m
-        q.push(x);
-        // ab size-1 ke lie ulta kr do queue taaki stack ki tarah behave krne lge * LIFO
-        for(int i=0; i<q.size()-1; i++){
-            int temp=q.front();
-            q.pop();
-            q.push(temp);
+        q2.push(x);
+        while(!q1.empty()){
+            q2.push(q1.front());
+            q1.pop();
+        }
+        while(!q2.empty()){
+            q1.push(q2.front());
+            q2.pop();
         }
     }
     
     int pop() {
-        int pop=q.front();
-        q.pop();
-        return pop;
+        int temp = q1.front();
+        q1.pop();
+        return temp;
     }
     
     int top() {
-        return q.front();
+        return q1.front();
     }
     
     bool empty() {
-        return q.empty();
+        return !q1.size();
     }
 };
 
