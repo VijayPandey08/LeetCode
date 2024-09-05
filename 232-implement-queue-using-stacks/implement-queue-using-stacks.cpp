@@ -1,5 +1,26 @@
 class MyQueue
 {
+
+// it has 2 methods 
+
+// method 1 : heavy push
+// step 1: s1 -> s2
+// step 2: s1.push(x);
+// step 3: s2 -> s1;
+
+// method 2: heavy push , pop
+// step 1: s1.push(x);
+// if(!s2.empty()){
+//   top , pop from here
+// }
+// else{
+//    s1 -> s2;
+//    sontinue your stuff;  
+//}
+
+
+// ------------------------------- method 2 ----------------
+
     public:
         stack<int> s1,s2;
         
