@@ -12,37 +12,34 @@ public:
 // Step 2: reverse the queue from starting to q.size()-1;
 
 
-//----------------- Method 1 ------------
-queue<int> q1;
-queue<int> q2;
+//----------------- Method 2 ------------
+
+queue<int> q;
     MyStack() {
         
     }
     
     void push(int x) {
-        q2.push(x);
-        while(!q1.empty()){
-            q2.push(q1.front());
-            q1.pop();
-        }
-        while(!q2.empty()){
-            q1.push(q2.front());
-            q2.pop();
+        int s = q.size();
+        q.push(x);
+        for(int i=0; i<s; i++){
+            q.push(q.front());
+            q.pop();
         }
     }
     
     int pop() {
-        int temp = q1.front();
-        q1.pop();
+        int temp = q.front();
+        q.pop();
         return temp;
     }
     
     int top() {
-        return q1.front();
+        return q.front();
     }
     
     bool empty() {
-        return q1.empty(); 
+        return q.empty();
     }
 };
 
