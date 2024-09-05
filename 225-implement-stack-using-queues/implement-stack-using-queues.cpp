@@ -42,7 +42,7 @@ queue<int> q2;
     }
     
     bool empty() {
-        return !q1.size();
+        return q1.empty(); 
     }
 };
 
