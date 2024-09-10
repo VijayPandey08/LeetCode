@@ -1,25 +1,9 @@
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
-
-        int s = 0;
-        int e = nums.size()-1;
-        int mid = e -(e-s)/2;
-
-        while(s<=e){
-            if(nums[mid] == target){
-                return mid;
-            }
-            else if(nums[mid]<target){
-                s = mid +1;
-            }
-            else{
-                e = mid -1;
-            }
-            mid = e - (e-s)/2;
-
-        }
-
+        int it = lower_bound(nums.begin(),nums.end(),target) - nums.begin();
+        if(it == nums.size()) return -1;
+        if(nums[it] == target) return it;
         return -1;
     }
 };
