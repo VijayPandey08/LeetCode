@@ -6,22 +6,38 @@
  *     TreeNode *right;
  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
+ * right(right) {}
  * };
  */
 class Solution {
 public:
-void solve(TreeNode* root, vector<int> &ans){
-    if(root==NULL){
-        return;
-    }
-    solve(root->left,ans);
-    ans.push_back(root->val);
-    solve(root->right,ans);
-}
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> ans;
-        solve(root,ans);
-        return ans;
+        // lets try morris traversal ..........
+        vector<int> res;
+
+        TreeNode* curr = root;
+
+        while (curr != NULL) {
+
+            if (curr->left == NULL) {
+                res.push_back(curr->val);
+                curr = curr->right;
+            }
+
+            else {
+                TreeNode* LeftChild = curr->left;
+
+                while (LeftChild->right != NULL) {
+                    LeftChild = LeftChild->right;
+                }
+
+                LeftChild->right = curr;
+                TreeNode* temp = curr;
+                curr = curr->left;
+                temp->left = NULL;
+            }
+        }
+        return res;
     }
 };
