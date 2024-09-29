@@ -6,24 +6,36 @@
  *     TreeNode *right;
  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
+ * right(right) {}
  * };
  */
 class Solution {
 public:
-int height(TreeNode* root){
-    if(root==NULL) return 0;
-    int leftHeight = height(root->left);
-    int rightHeight = height(root->right);
-    int height = max(leftHeight,rightHeight)+1;
-    return height;
-}
+    int height(TreeNode* root) {
+        if (root == NULL) {
+            return 0;
+        }
+
+        int left = height(root->left);
+        int right = height(root->right);
+
+        return max(left, right) + 1;
+    }
+
     int diameterOfBinaryTree(TreeNode* root) {
-        if(root==NULL) return 0;
-        int option1 = diameterOfBinaryTree(root->left);
-        int option2 = diameterOfBinaryTree(root->right);
-        int option3 = height(root->left) + height(root->right) ;
-        int diameter = max(option1,max(option2,option3));
-        return diameter;
+        int ans = 0;
+        if (root == NULL)
+            return ans;
+
+        int left_h = height(root->left);
+        int right_h = height(root->right);
+        int d1 = left_h + right_h ;
+
+        int d2 = diameterOfBinaryTree(root->left);
+        int d3 = diameterOfBinaryTree(root->right);
+
+
+        return max({d1,d2,d3});
     }
 };
